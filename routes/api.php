@@ -3,5 +3,5 @@
 use Illuminate\Http\Request;
 
 
-Route::get('clients', 'ClientController@index');
-Route::post('clients', 'ClientController@create');
+Route::get('clients/list/', 'ClientController@index');
+Route::post('clients/create/', 'ClientController@create');

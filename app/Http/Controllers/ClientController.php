@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Client;
-use App\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     public function index()
     {
-        return response()->json(User::all());
+        return response()->json(Client::all());
     }
 
     public function create(Request $request) {
@@ -26,11 +25,11 @@ class ClientController extends Controller
             $client->fecha_nacimiento = $birth_date;
             $valid_document = Client::where('cedula', $document)->first();
             if(!empty($valid_document['cedula'])) {
-                return response()->json(['msg' => '¡El Documento no está disponible!']);
+                return response()->json(['message' => '¡El Documento no está permitido!']);
             }
             $client->save();
-            return response()->json(['msg' => '¡El Cliente ha sido creado!']);
+            return response()->json(['message' => '¡El Cliente ha sido creado!']);
         }
-        return response()->json(['msg' => '¡El campo Nombre, Cédula y Fecha son obligatorios!']);
+        return response()->json(['message' => '¡El campo Nombre, Cédula y Fecha son obligatorios!']);
     }
 }
