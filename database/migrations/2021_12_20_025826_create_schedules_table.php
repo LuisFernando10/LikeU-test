@@ -14,15 +14,11 @@ class CreateSchedulesTable extends Migration
     public function up()
     {
         Schema::create('schedules', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('asunto');
             $table->dateTime('fecha');
             $table->enum('estado', ['Programada', 'Realizada', 'Cancelada', 'No_Asistida']);
-            $table->foreign("id_client")
-                ->references("id")
-                ->on("clients")
-                ->onDelete("cascade")
-                ->onUpdate("cascade");
             $table->timestamps();
         });
     }
